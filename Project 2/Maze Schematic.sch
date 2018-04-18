@@ -1432,12 +1432,12 @@ DIN A3, landscape with location and doc. field</description>
 <connect gate="G$1" pin="RESET#" pad="62"/>
 <connect gate="G$1" pin="SPI0.CLK" pad="8"/>
 <connect gate="G$1" pin="SPI0.CS" pad="6"/>
-<connect gate="G$1" pin="SPI0.MISO" pad="63"/>
-<connect gate="G$1" pin="SPI0.MOSI" pad="61"/>
+<connect gate="G$1" pin="SPI0.MISO" pad="10"/>
+<connect gate="G$1" pin="SPI0.MOSI" pad="12"/>
 <connect gate="G$1" pin="SPI1.CLK" pad="65"/>
 <connect gate="G$1" pin="SPI1.CS" pad="67"/>
-<connect gate="G$1" pin="SPI1.MISO" pad="10"/>
-<connect gate="G$1" pin="SPI1.MOSI" pad="12"/>
+<connect gate="G$1" pin="SPI1.MISO" pad="63"/>
+<connect gate="G$1" pin="SPI1.MOSI" pad="61"/>
 <connect gate="G$1" pin="UART0.RX" pad="32"/>
 <connect gate="G$1" pin="UART0.TX" pad="30"/>
 <connect gate="G$1" pin="UART4.RX" pad="41"/>
@@ -1854,23 +1854,23 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <instance part="SW_PWR" gate="G$1" x="35.56" y="157.48"/>
 <instance part="U6" gate="G$1" x="261.62" y="205.74"/>
 <instance part="GND2" gate="1" x="223.52" y="81.28"/>
-<instance part="SUPPLY2" gate="G$1" x="187.96" y="106.68"/>
+<instance part="SUPPLY2" gate="G$1" x="187.96" y="109.22"/>
 <instance part="SW1" gate="G$1" x="205.74" y="91.44"/>
 <instance part="R1" gate="G$1" x="187.96" y="99.06" rot="R90"/>
 <instance part="GND1" gate="1" x="223.52" y="58.42"/>
-<instance part="SUPPLY1" gate="G$1" x="187.96" y="83.82"/>
+<instance part="SUPPLY1" gate="G$1" x="187.96" y="86.36"/>
 <instance part="SW2" gate="G$1" x="205.74" y="68.58"/>
 <instance part="R2" gate="G$1" x="187.96" y="76.2" rot="R90"/>
 <instance part="GND3" gate="1" x="223.52" y="35.56"/>
-<instance part="SUPPLY3" gate="G$1" x="187.96" y="60.96"/>
+<instance part="SUPPLY3" gate="G$1" x="187.96" y="63.5"/>
 <instance part="SW3" gate="G$1" x="205.74" y="45.72"/>
 <instance part="R3" gate="G$1" x="187.96" y="53.34" rot="R90"/>
 <instance part="GND4" gate="1" x="223.52" y="12.7"/>
-<instance part="SUPPLY4" gate="G$1" x="187.96" y="38.1"/>
+<instance part="SUPPLY4" gate="G$1" x="187.96" y="40.64"/>
 <instance part="SW4" gate="G$1" x="205.74" y="22.86"/>
 <instance part="R4" gate="G$1" x="187.96" y="30.48" rot="R90"/>
 <instance part="GND5" gate="1" x="175.26" y="10.16"/>
-<instance part="SUPPLY5" gate="G$1" x="139.7" y="35.56"/>
+<instance part="SUPPLY5" gate="G$1" x="139.7" y="38.1"/>
 <instance part="SW5" gate="G$1" x="157.48" y="20.32"/>
 <instance part="R5" gate="G$1" x="139.7" y="27.94" rot="R90"/>
 <instance part="GND6" gate="1" x="15.24" y="139.7"/>
@@ -2068,28 +2068,6 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <label x="132.08" y="154.94" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="SYS_VDD1_3P3V" class="0">
-<segment>
-<pinref part="SUPPLY2" gate="G$1" pin="SYS_VDD1_3P3V"/>
-<pinref part="R1" gate="G$1" pin="2"/>
-</segment>
-<segment>
-<pinref part="SUPPLY1" gate="G$1" pin="SYS_VDD1_3P3V"/>
-<pinref part="R2" gate="G$1" pin="2"/>
-</segment>
-<segment>
-<pinref part="SUPPLY3" gate="G$1" pin="SYS_VDD1_3P3V"/>
-<pinref part="R3" gate="G$1" pin="2"/>
-</segment>
-<segment>
-<pinref part="SUPPLY4" gate="G$1" pin="SYS_VDD1_3P3V"/>
-<pinref part="R4" gate="G$1" pin="2"/>
-</segment>
-<segment>
-<pinref part="SUPPLY5" gate="G$1" pin="SYS_VDD1_3P3V"/>
-<pinref part="R5" gate="G$1" pin="2"/>
-</segment>
-</net>
 <net name="BTN2" class="0">
 <segment>
 <pinref part="SW2" gate="G$1" pin="2"/>
@@ -2218,6 +2196,31 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <wire x1="256.54" y1="116.84" x2="256.54" y2="114.3" width="0.1524" layer="91"/>
 <junction x="256.54" y="116.84"/>
 <label x="264.16" y="116.84" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="SUPPLY3" gate="G$1" pin="SYS_VDD1_3P3V"/>
+<pinref part="R3" gate="G$1" pin="2"/>
+<wire x1="187.96" y1="60.96" x2="187.96" y2="58.42" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SUPPLY4" gate="G$1" pin="SYS_VDD1_3P3V"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="187.96" y1="38.1" x2="187.96" y2="35.56" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SUPPLY1" gate="G$1" pin="SYS_VDD1_3P3V"/>
+<pinref part="R2" gate="G$1" pin="2"/>
+<wire x1="187.96" y1="83.82" x2="187.96" y2="81.28" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SUPPLY2" gate="G$1" pin="SYS_VDD1_3P3V"/>
+<pinref part="R1" gate="G$1" pin="2"/>
+<wire x1="187.96" y1="106.68" x2="187.96" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SUPPLY5" gate="G$1" pin="SYS_VDD1_3P3V"/>
+<pinref part="R5" gate="G$1" pin="2"/>
+<wire x1="139.7" y1="35.56" x2="139.7" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VDD_5V" class="0">

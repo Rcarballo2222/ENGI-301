@@ -1085,7 +1085,7 @@ chip, wave soldering</description>
 <pin name="RESV@0" x="50.8" y="-15.24" length="middle"/>
 <pin name="AUX_CL" x="93.98" y="7.62" length="middle" rot="R180"/>
 <pin name="VDDIO" x="50.8" y="20.32" length="middle"/>
-<pin name="AD0/SDO" x="50.8" y="7.62" length="middle"/>
+<pin name="AD0/SDO" x="50.8" y="5.08" length="middle"/>
 <pin name="REGOUT" x="50.8" y="-10.16" length="middle"/>
 <pin name="FSYNC" x="50.8" y="-5.08" length="middle"/>
 <pin name="INT" x="93.98" y="25.4" length="middle" rot="R180"/>
@@ -1105,7 +1105,7 @@ chip, wave soldering</description>
 <pin name="NC@8" x="93.98" y="-25.4" length="middle" rot="R180"/>
 <pin name="SDA/SDI" x="50.8" y="10.16" length="middle"/>
 <pin name="SCL/SCLK" x="50.8" y="12.7" length="middle"/>
-<pin name="NCS" x="50.8" y="5.08" length="middle"/>
+<pin name="NCS" x="50.8" y="7.62" length="middle"/>
 <wire x1="55.88" y1="-27.94" x2="55.88" y2="27.94" width="0.254" layer="94"/>
 <wire x1="55.88" y1="27.94" x2="88.9" y2="27.94" width="0.254" layer="94"/>
 <wire x1="88.9" y1="27.94" x2="88.9" y2="-27.94" width="0.254" layer="94"/>

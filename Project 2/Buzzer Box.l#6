@@ -1226,6 +1226,11 @@ ARRAY</text>
 <text x="22.86" y="68.58" size="2.54" layer="94">Pocket</text>
 <text x="25.4" y="66.04" size="2.54" layer="94">Beagle</text>
 </symbol>
+<symbol name="VDD_5V">
+<circle x="0" y="1.27" radius="1.27" width="0.254" layer="94"/>
+<pin name="SYS_VDD1_3P3V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
+<text x="0" y="4.064" size="1.778" layer="96" align="center">&gt;VALUE</text>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="MPU-9250" prefix="U" uservalue="yes">
@@ -1715,6 +1720,18 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <connect gate="G$1" pin="VOUT@1" pad="24"/>
 <connect gate="G$1" pin="VOUT@2" pad="49"/>
 </connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="VDD_5V" prefix="SUPPLY">
+<gates>
+<gate name="G$2" symbol="VDD_5V" x="0" y="2.54"/>
+</gates>
+<devices>
+<device name="">
 <technologies>
 <technology name=""/>
 </technologies>

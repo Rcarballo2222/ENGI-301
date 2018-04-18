@@ -1786,7 +1786,7 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <part name="R5" library="Buzzer Box" deviceset="R_" device="R0603" value="1K"/>
 <part name="GND6" library="Buzzer Box" deviceset="GND" device=""/>
 <part name="SUPPLY6" library="Buzzer Box" deviceset="VDD_3P3V" device=""/>
-<part name="R6" library="Buzzer Box" deviceset="R_" device="R0603" value="1K"/>
+<part name="R6" library="Buzzer Box" deviceset="R_" device="R0603" value="10K"/>
 <part name="C1" library="Buzzer Box" deviceset="C_" device="C0603" value=".1uF"/>
 <part name="GND7" library="Buzzer Box" deviceset="GND" device=""/>
 <part name="GND8" library="Buzzer Box" deviceset="GND" device=""/>
@@ -1840,6 +1840,7 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <wire x1="365.76" y1="187.96" x2="340.36" y2="187.96" width="0.1524" layer="94"/>
 <text x="342.9" y="175.26" size="1.778" layer="94">8 X 8 LED ARRAY</text>
 <text x="292.1" y="195.58" size="1.778" layer="95">LED Arrays have external connector to connect to multiple arrays</text>
+<text x="71.12" y="246.38" size="6.4516" layer="95">PocketBeagle</text>
 </plain>
 <instances>
 <instance part="ORIGIN" gate="G$1" x="0" y="0"/>

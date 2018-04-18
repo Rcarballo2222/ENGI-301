@@ -1565,7 +1565,7 @@ Sizes: 0402, 0603 &amp; 0805</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="BUZZER">
+<deviceset name="BUZZER" prefix="BZZR">
 <gates>
 <gate name="G$1" symbol="BUZZER" x="-15.24" y="0"/>
 </gates>
