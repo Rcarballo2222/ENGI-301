@@ -1786,7 +1786,7 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <part name="R5" library="Buzzer Box" deviceset="R_" device="R0603" value="1K"/>
 <part name="GND6" library="Buzzer Box" deviceset="GND" device=""/>
 <part name="SUPPLY6" library="Buzzer Box" deviceset="VDD_3P3V" device=""/>
-<part name="R6" library="Buzzer Box" deviceset="R_" device="R0603" value="1K"/>
+<part name="R6" library="Buzzer Box" deviceset="R_" device="R0603" value="10K"/>
 <part name="C1" library="Buzzer Box" deviceset="C_" device="C0603" value=".1uF"/>
 <part name="GND7" library="Buzzer Box" deviceset="GND" device=""/>
 <part name="GND8" library="Buzzer Box" deviceset="GND" device=""/>

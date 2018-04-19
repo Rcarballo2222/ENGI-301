@@ -2315,7 +2315,7 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <wire x1="53.34" y1="20.32" x2="71.12" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$1" class="0">
+<net name="REGOUT" class="0">
 <segment>
 <pinref part="U2" gate="G$1" pin="REGOUT"/>
 <pinref part="C2" gate="G$1" pin="1"/>
