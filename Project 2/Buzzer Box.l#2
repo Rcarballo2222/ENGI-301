@@ -1749,7 +1749,7 @@ Sizes: 0402, 0603 &amp; 0805</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="LTST-C191TBKT">
+<deviceset name="LTST-C191TBKT" prefix="LED">
 <gates>
 <gate name="G$1" symbol="LED" x="-33.02" y="10.16"/>
 </gates>

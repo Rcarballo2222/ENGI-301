@@ -1845,12 +1845,12 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <connect gate="G$1" pin="RESET#" pad="62"/>
 <connect gate="G$1" pin="SPI0.CLK" pad="8"/>
 <connect gate="G$1" pin="SPI0.CS" pad="6"/>
-<connect gate="G$1" pin="SPI0.MISO" pad="63"/>
-<connect gate="G$1" pin="SPI0.MOSI" pad="61"/>
+<connect gate="G$1" pin="SPI0.MISO" pad="10"/>
+<connect gate="G$1" pin="SPI0.MOSI" pad="12"/>
 <connect gate="G$1" pin="SPI1.CLK" pad="65"/>
 <connect gate="G$1" pin="SPI1.CS" pad="67"/>
-<connect gate="G$1" pin="SPI1.MISO" pad="10"/>
-<connect gate="G$1" pin="SPI1.MOSI" pad="12"/>
+<connect gate="G$1" pin="SPI1.MISO" pad="63"/>
+<connect gate="G$1" pin="SPI1.MOSI" pad="61"/>
 <connect gate="G$1" pin="UART0.RX" pad="32"/>
 <connect gate="G$1" pin="UART0.TX" pad="30"/>
 <connect gate="G$1" pin="UART4.RX" pad="41"/>

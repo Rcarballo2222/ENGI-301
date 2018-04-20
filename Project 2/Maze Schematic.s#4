@@ -1298,7 +1298,7 @@ DIN A3, landscape with location and doc. field</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="LTST-C191TBKT">
+<deviceset name="LTST-C191TBKT" prefix="LED">
 <gates>
 <gate name="G$1" symbol="LED" x="-33.02" y="10.16"/>
 </gates>
@@ -1755,13 +1755,13 @@ Sizes: 0402, 0603 &amp; 0805</description>
 </classes>
 <parts>
 <part name="ORIGIN" library="Buzzer Box" deviceset="FRAMES_A3L-LOC" device=""/>
-<part name="U$2" library="Buzzer Box" deviceset="BUZZER" device=""/>
-<part name="U$3" library="Buzzer Box" deviceset="LTST-C191TBKT" device=""/>
+<part name="BZZR1" library="Buzzer Box" deviceset="BUZZER" device=""/>
+<part name="LED3" library="Buzzer Box" deviceset="LTST-C191TBKT" device=""/>
 <part name="U1" library="Buzzer Box" deviceset="MOD-LED8X8RGB-CONN" device=""/>
 <part name="U2" library="Buzzer Box" deviceset="MPU-9250" device="" value="MPU-9250"/>
 <part name="U3" library="Buzzer Box" deviceset="POCKETBEAGLE" device=""/>
-<part name="U$8" library="Buzzer Box" deviceset="LTST-C191TBKT" device=""/>
-<part name="U$9" library="Buzzer Box" deviceset="LTST-C191TBKT" device=""/>
+<part name="LED2" library="Buzzer Box" deviceset="LTST-C191TBKT" device=""/>
+<part name="LED1" library="Buzzer Box" deviceset="LTST-C191TBKT" device=""/>
 <part name="SW_PWR" library="Buzzer Box" deviceset="BUTTON" device=""/>
 <part name="U6" library="Buzzer Box" deviceset="MOD-LED8X8RGB-CONN" device=""/>
 <part name="GND2" library="Buzzer Box" deviceset="GND" device=""/>
@@ -1844,33 +1844,33 @@ Sizes: 0402, 0603 &amp; 0805</description>
 </plain>
 <instances>
 <instance part="ORIGIN" gate="G$1" x="0" y="0"/>
-<instance part="U$2" gate="G$1" x="152.4" y="180.34" rot="R270"/>
-<instance part="U$3" gate="G$1" x="73.66" y="20.32" rot="R90"/>
+<instance part="BZZR1" gate="G$1" x="152.4" y="180.34" rot="R270"/>
+<instance part="LED3" gate="G$1" x="73.66" y="20.32" rot="R90"/>
 <instance part="U1" gate="G$1" x="261.62" y="165.1"/>
 <instance part="U2" gate="G$1" x="264.16" y="93.98"/>
 <instance part="U3" gate="G$1" x="76.2" y="93.98"/>
-<instance part="U$8" gate="G$1" x="73.66" y="30.48" rot="R90"/>
-<instance part="U$9" gate="G$1" x="73.66" y="40.64" rot="R90"/>
+<instance part="LED2" gate="G$1" x="73.66" y="30.48" rot="R90"/>
+<instance part="LED1" gate="G$1" x="73.66" y="40.64" rot="R90"/>
 <instance part="SW_PWR" gate="G$1" x="35.56" y="157.48"/>
 <instance part="U6" gate="G$1" x="261.62" y="205.74"/>
 <instance part="GND2" gate="1" x="223.52" y="81.28"/>
-<instance part="SUPPLY2" gate="G$1" x="187.96" y="106.68"/>
+<instance part="SUPPLY2" gate="G$1" x="187.96" y="109.22"/>
 <instance part="SW1" gate="G$1" x="205.74" y="91.44"/>
 <instance part="R1" gate="G$1" x="187.96" y="99.06" rot="R90"/>
 <instance part="GND1" gate="1" x="223.52" y="58.42"/>
-<instance part="SUPPLY1" gate="G$1" x="187.96" y="83.82"/>
+<instance part="SUPPLY1" gate="G$1" x="187.96" y="86.36"/>
 <instance part="SW2" gate="G$1" x="205.74" y="68.58"/>
 <instance part="R2" gate="G$1" x="187.96" y="76.2" rot="R90"/>
 <instance part="GND3" gate="1" x="223.52" y="35.56"/>
-<instance part="SUPPLY3" gate="G$1" x="187.96" y="60.96"/>
+<instance part="SUPPLY3" gate="G$1" x="187.96" y="63.5"/>
 <instance part="SW3" gate="G$1" x="205.74" y="45.72"/>
 <instance part="R3" gate="G$1" x="187.96" y="53.34" rot="R90"/>
 <instance part="GND4" gate="1" x="223.52" y="12.7"/>
-<instance part="SUPPLY4" gate="G$1" x="187.96" y="38.1"/>
+<instance part="SUPPLY4" gate="G$1" x="187.96" y="40.64"/>
 <instance part="SW4" gate="G$1" x="205.74" y="22.86"/>
 <instance part="R4" gate="G$1" x="187.96" y="30.48" rot="R90"/>
 <instance part="GND5" gate="1" x="175.26" y="10.16"/>
-<instance part="SUPPLY5" gate="G$1" x="139.7" y="35.56"/>
+<instance part="SUPPLY5" gate="G$1" x="139.7" y="38.1"/>
 <instance part="SW5" gate="G$1" x="157.48" y="20.32"/>
 <instance part="R5" gate="G$1" x="139.7" y="27.94" rot="R90"/>
 <instance part="GND6" gate="1" x="15.24" y="139.7"/>
@@ -1985,21 +1985,21 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <wire x1="121.92" y1="172.72" x2="127" y2="172.72" width="0.1524" layer="91"/>
 <junction x="127" y="172.72"/>
 <label x="124.46" y="86.36" size="1.778" layer="95" rot="R270"/>
-<pinref part="U$2" gate="G$1" pin="-"/>
+<pinref part="BZZR1" gate="G$1" pin="-"/>
 <wire x1="149.86" y1="177.8" x2="127" y2="177.8" width="0.1524" layer="91"/>
 <wire x1="127" y1="177.8" x2="127" y2="175.26" width="0.1524" layer="91"/>
 <junction x="127" y="175.26"/>
 <pinref part="GND9" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U$9" gate="G$1" pin="C(-)"/>
+<pinref part="LED1" gate="G$1" pin="C(-)"/>
 <pinref part="GND10" gate="1" pin="GND"/>
 <wire x1="78.74" y1="40.64" x2="101.6" y2="40.64" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="40.64" x2="101.6" y2="30.48" width="0.1524" layer="91"/>
-<pinref part="U$8" gate="G$1" pin="C(-)"/>
+<pinref part="LED2" gate="G$1" pin="C(-)"/>
 <wire x1="101.6" y1="20.32" x2="101.6" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="78.74" y1="30.48" x2="101.6" y2="30.48" width="0.1524" layer="91"/>
-<pinref part="U$3" gate="G$1" pin="C(-)"/>
+<pinref part="LED3" gate="G$1" pin="C(-)"/>
 <wire x1="101.6" y1="30.48" x2="101.6" y2="20.32" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="20.32" x2="78.74" y2="20.32" width="0.1524" layer="91"/>
 <junction x="101.6" y="20.32"/>
@@ -2066,28 +2066,6 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <pinref part="U3" gate="G$1" pin="GPIO20"/>
 <wire x1="121.92" y1="154.94" x2="142.24" y2="154.94" width="0.1524" layer="91"/>
 <label x="132.08" y="154.94" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="SYS_VDD1_3P3V" class="0">
-<segment>
-<pinref part="SUPPLY2" gate="G$1" pin="SYS_VDD1_3P3V"/>
-<pinref part="R1" gate="G$1" pin="2"/>
-</segment>
-<segment>
-<pinref part="SUPPLY1" gate="G$1" pin="SYS_VDD1_3P3V"/>
-<pinref part="R2" gate="G$1" pin="2"/>
-</segment>
-<segment>
-<pinref part="SUPPLY3" gate="G$1" pin="SYS_VDD1_3P3V"/>
-<pinref part="R3" gate="G$1" pin="2"/>
-</segment>
-<segment>
-<pinref part="SUPPLY4" gate="G$1" pin="SYS_VDD1_3P3V"/>
-<pinref part="R4" gate="G$1" pin="2"/>
-</segment>
-<segment>
-<pinref part="SUPPLY5" gate="G$1" pin="SYS_VDD1_3P3V"/>
-<pinref part="R5" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="BTN2" class="0">
@@ -2219,6 +2197,31 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <junction x="256.54" y="116.84"/>
 <label x="264.16" y="116.84" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="SUPPLY3" gate="G$1" pin="SYS_VDD1_3P3V"/>
+<pinref part="R3" gate="G$1" pin="2"/>
+<wire x1="187.96" y1="60.96" x2="187.96" y2="58.42" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SUPPLY4" gate="G$1" pin="SYS_VDD1_3P3V"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="187.96" y1="38.1" x2="187.96" y2="35.56" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SUPPLY1" gate="G$1" pin="SYS_VDD1_3P3V"/>
+<pinref part="R2" gate="G$1" pin="2"/>
+<wire x1="187.96" y1="83.82" x2="187.96" y2="81.28" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SUPPLY2" gate="G$1" pin="SYS_VDD1_3P3V"/>
+<pinref part="R1" gate="G$1" pin="2"/>
+<wire x1="187.96" y1="106.68" x2="187.96" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SUPPLY5" gate="G$1" pin="SYS_VDD1_3P3V"/>
+<pinref part="R5" gate="G$1" pin="2"/>
+<wire x1="139.7" y1="35.56" x2="139.7" y2="33.02" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="VDD_5V" class="0">
 <segment>
@@ -2250,7 +2253,7 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <net name="BUZZER" class="0">
 <segment>
 <pinref part="U3" gate="G$1" pin="PWM1A"/>
-<pinref part="U$2" gate="G$1" pin="+"/>
+<pinref part="BZZR1" gate="G$1" pin="+"/>
 <wire x1="121.92" y1="180.34" x2="149.86" y2="180.34" width="0.1524" layer="91"/>
 <label x="129.54" y="180.34" size="1.778" layer="95"/>
 </segment>
@@ -2294,21 +2297,21 @@ Sizes: 0402, 0603 &amp; 0805</description>
 <net name="N$5" class="0">
 <segment>
 <pinref part="R7" gate="G$1" pin="1"/>
-<pinref part="U$9" gate="G$1" pin="A(+)"/>
+<pinref part="LED1" gate="G$1" pin="A(+)"/>
 <wire x1="53.34" y1="40.64" x2="71.12" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$6" class="0">
 <segment>
 <pinref part="R8" gate="G$1" pin="1"/>
-<pinref part="U$8" gate="G$1" pin="A(+)"/>
+<pinref part="LED2" gate="G$1" pin="A(+)"/>
 <wire x1="53.34" y1="30.48" x2="71.12" y2="30.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$7" class="0">
 <segment>
 <pinref part="R9" gate="G$1" pin="1"/>
-<pinref part="U$3" gate="G$1" pin="A(+)"/>
+<pinref part="LED3" gate="G$1" pin="A(+)"/>
 <wire x1="53.34" y1="20.32" x2="71.12" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>

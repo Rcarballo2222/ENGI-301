@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.7.1">
+<eagle version="9.0.0">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="10" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -36,25 +36,25 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
-<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
-<layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
-<layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
-<layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
-<layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
+<layer number="33" name="tFinish" color="6" fill="3" visible="yes" active="yes"/>
+<layer number="34" name="bFinish" color="6" fill="6" visible="yes" active="yes"/>
+<layer number="35" name="tGlue" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="36" name="bGlue" color="7" fill="5" visible="yes" active="yes"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
-<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
@@ -173,6 +173,9 @@
 <wire x1="152.4" y1="0" x2="152.4" y2="165.1" width="0" layer="20"/>
 <wire x1="152.4" y1="165.1" x2="0" y2="165.1" width="0" layer="20"/>
 <wire x1="0" y1="165.1" x2="0" y2="0" width="0" layer="20"/>
+<text x="52.832" y="25.4" size="1.778" layer="25">Maze Project</text>
+<text x="57.912" y="18.034" size="1.778" layer="25">Rene Carballo</text>
+<text x="68.834" y="25.4" size="1.778" layer="25">- Rev 1.0</text>
 </plain>
 <libraries>
 <library name="Buzzer Box">
@@ -506,8 +509,8 @@ chip</description>
 <rectangle x1="-0.1999" y1="-0.4001" x2="0.1999" y2="0.4001" layer="35"/>
 <smd name="1" x="-0.8001" y="0" dx="0.949959375" dy="1.031240625" layer="1"/>
 <smd name="2" x="0.8001" y="0" dx="0.949959375" dy="1.031240625" layer="1"/>
-<text x="-0.9144" y="0.6604" size="0.254" layer="25">&gt;NAME</text>
-<text x="-1.1176" y="-0.9398" size="0.254" layer="27">&gt;VALUE</text>
+<text x="-1.27" y="1.27" size="0.8128" layer="25">&gt;NAME</text>
+<text x="-1.27" y="-2.54" size="0.8128" layer="27">&gt;VALUE</text>
 </package>
 <package name="MOD-LED8X8RGB">
 <wire x1="0" y1="0" x2="2" y2="0" width="0.254" layer="21"/>
@@ -664,6 +667,9 @@ chip</description>
 <smd name="2" x="0.85" y="0" dx="1.1" dy="1" layer="1"/>
 <text x="-0.889" y="0.762" size="1.27" layer="25">&gt;NAME</text>
 <text x="-0.889" y="-2.032" size="1.27" layer="27">&gt;VALUE</text>
+</package>
+<package name="MOUNTING_HOLE">
+<pad name="P$1" x="0" y="0" drill="3.175" diameter="4.445"/>
 </package>
 </packages>
 </library>
@@ -846,39 +852,72 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 </pass>
 </autorouter>
 <elements>
-<element name="BZZR1" library="Buzzer Box" package="BUZZER-12MM" value="BUZZER" x="7.62" y="100.33" rot="R90"/>
+<element name="BZZR1" library="Buzzer Box" package="BUZZER-12MM" value="BUZZER" x="7.62" y="100.33" smashed="yes" rot="R90">
+<attribute name="NAME" x="10.16" y="108.204" size="1.27" layer="25" rot="R180"/>
+<attribute name="VALUE" x="10.668" y="93.472" size="1.27" layer="25" rot="R180"/>
+</element>
 <element name="LED3" library="Buzzer Box" package="LED-SMD" value="LTST-C191TBKT" x="64.77" y="4.064"/>
 <element name="U1" library="Buzzer Box" package="FE06W" value="MOD-LED8X8RGB-CONN" x="25.4" y="143.51" rot="R90"/>
-<element name="U2" library="Buzzer Box" package="QFN-3X3MM" value="MPU-9250" x="76.2" y="82.55"/>
+<element name="U2" library="Buzzer Box" package="QFN-3X3MM" value="MPU-9250" x="76.2" y="82.55" smashed="yes">
+<attribute name="NAME" x="79.375" y="82.296" size="0.8128" layer="25"/>
+<attribute name="VALUE" x="67.437" y="84.328" size="0.8128" layer="27"/>
+</element>
 <element name="U3" library="Buzzer Box" package="POCKETBEAGLE" value="POCKETBEAGLE" x="87.63" y="2.54"/>
 <element name="LED2" library="Buzzer Box" package="LED-SMD" value="LTST-C191TBKT" x="64.77" y="7.874"/>
 <element name="LED1" library="Buzzer Box" package="LED-SMD" value="LTST-C191TBKT" x="64.77" y="11.43"/>
 <element name="SW_PWR" library="Buzzer Box" package="BUTTON-11.5X11.7MM" value="BUTTON" x="144.78" y="125.73"/>
 <element name="U6" library="Buzzer Box" package="FE06W" value="MOD-LED8X8RGB-CONN" x="25.4" y="81.28" rot="R90"/>
-<element name="SW1" library="Buzzer Box" package="BUTTON-11.5X11.7MM" value="BUTTON" x="25.4" y="19.05"/>
+<element name="SW1" library="Buzzer Box" package="BUTTON-11.5X11.7MM" value="BUTTON" x="25.4" y="19.05" smashed="yes">
+<attribute name="NAME" x="23.876" y="23.114" size="1.27" layer="25"/>
+<attribute name="VALUE" x="22.352" y="14.224" size="1.27" layer="27"/>
+</element>
 <element name="R1" library="Buzzer Box" package="R0603" value="1K" x="18.288" y="24.13" rot="R90"/>
 <element name="SW2" library="Buzzer Box" package="BUTTON-11.5X11.7MM" value="BUTTON" x="10.16" y="19.05"/>
 <element name="R2" library="Buzzer Box" package="R0603" value="1K" x="3.048" y="24.13" rot="R90"/>
 <element name="SW3" library="Buzzer Box" package="BUTTON-11.5X11.7MM" value="BUTTON" x="40.64" y="19.05"/>
 <element name="R3" library="Buzzer Box" package="R0603" value="1K" x="33.528" y="24.13" rot="R90"/>
-<element name="SW4" library="Buzzer Box" package="BUTTON-11.5X11.7MM" value="BUTTON" x="25.4" y="6.35"/>
+<element name="SW4" library="Buzzer Box" package="BUTTON-11.5X11.7MM" value="BUTTON" x="25.4" y="6.35" smashed="yes">
+<attribute name="NAME" x="23.368" y="9.906" size="1.27" layer="25"/>
+<attribute name="VALUE" x="22.352" y="1.524" size="1.27" layer="27"/>
+</element>
 <element name="R4" library="Buzzer Box" package="R0603" value="1K" x="18.288" y="11.43" rot="R90"/>
-<element name="SW5" library="Buzzer Box" package="BUTTON-11.5X11.7MM" value="BUTTON" x="25.4" y="31.75"/>
+<element name="SW5" library="Buzzer Box" package="BUTTON-11.5X11.7MM" value="BUTTON" x="25.4" y="31.75" smashed="yes">
+<attribute name="NAME" x="23.622" y="35.052" size="1.27" layer="25"/>
+<attribute name="VALUE" x="22.352" y="26.924" size="1.27" layer="27"/>
+</element>
 <element name="R5" library="Buzzer Box" package="R0603" value="1K" x="18.288" y="36.83" rot="R90"/>
 <element name="U$1" library="Buzzer Box" package="MOD-LED8X8RGB" value="" x="76.2" y="101.6"/>
 <element name="U$4" library="Buzzer Box" package="MOD-LED8X8RGB" value="" x="15.24" y="101.6"/>
 <element name="U$5" library="Buzzer Box" package="MOD-LED8X8RGB" value="" x="15.24" y="39.37"/>
 <element name="U$6" library="Buzzer Box" package="MOD-LED8X8RGB" value="" x="76.2" y="39.37"/>
-<element name="R6" library="Buzzer Box" package="R0603" value="10K" x="139.7" y="116.84"/>
-<element name="C1" library="Buzzer Box" package="C0603" value=".1uF" x="139.7" y="114.3"/>
+<element name="R6" library="Buzzer Box" package="R0603" value="10K" x="139.7" y="116.84" smashed="yes">
+<attribute name="NAME" x="138.7856" y="117.5004" size="0.254" layer="25"/>
+<attribute name="VALUE" x="138.5824" y="115.9002" size="0.254" layer="27"/>
+</element>
+<element name="C1" library="Buzzer Box" package="C0603" value=".1uF" x="139.7" y="114.3" smashed="yes">
+<attribute name="NAME" x="141.605" y="114.046" size="1.27" layer="25"/>
+<attribute name="VALUE" x="137.795" y="112.268" size="1.27" layer="27"/>
+</element>
 <element name="R7" library="Buzzer Box" package="R0603" value="1K" x="68.58" y="11.43"/>
 <element name="R8" library="Buzzer Box" package="R0603" value="1K" x="68.58" y="7.874"/>
 <element name="R9" library="Buzzer Box" package="R0603" value="1K" x="68.58" y="4.064"/>
-<element name="C2" library="Buzzer Box" package="C0603" value=".1uF" x="73.914" y="76.454" rot="R180"/>
+<element name="C2" library="Buzzer Box" package="C0603" value=".1uF" x="73.914" y="76.454" smashed="yes" rot="R180">
+<attribute name="NAME" x="72.263" y="76.962" size="1.27" layer="25" rot="R180"/>
+<attribute name="VALUE" x="73.787" y="75.438" size="1.27" layer="27" rot="R180"/>
+</element>
 <element name="C3" library="Buzzer Box" package="C0603" value=".1uF" x="68.58" y="81.28"/>
-<element name="C4" library="Buzzer Box" package="C0603" value="10nF" x="68.58" y="76.2"/>
+<element name="C4" library="Buzzer Box" package="C0603" value="10nF" x="68.58" y="76.2" smashed="yes">
+<attribute name="NAME" x="66.167" y="76.708" size="1.27" layer="25"/>
+<attribute name="VALUE" x="66.167" y="74.168" size="1.27" layer="27"/>
+</element>
 <element name="R10" library="Buzzer Box" package="R0603" value="1K" x="146.05" y="43.688"/>
 <element name="R11" library="Buzzer Box" package="R0603" value="1K" x="146.05" y="46.228"/>
+<element name="MGT1" library="Buzzer Box" package="MOUNTING_HOLE" value="MOUNTING_HOLE" x="6.604" y="159.512"/>
+<element name="MGT2" library="Buzzer Box" package="MOUNTING_HOLE" value="MOUNTING_HOLE" x="147.066" y="160.02"/>
+<element name="MGT3" library="Buzzer Box" package="MOUNTING_HOLE" value="MOUNTING_HOLE" x="4.572" y="81.534"/>
+<element name="MGT4" library="Buzzer Box" package="MOUNTING_HOLE" value="MOUNTING_HOLE" x="148.082" y="83.058"/>
+<element name="MGT5" library="Buzzer Box" package="MOUNTING_HOLE" value="MOUNTING_HOLE" x="148.336" y="4.826"/>
+<element name="MGT6" library="Buzzer Box" package="MOUNTING_HOLE" value="MOUNTING_HOLE" x="4.826" y="3.302"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -892,7 +931,7 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <contactref element="SW4" pad="P$4"/>
 <contactref element="SW5" pad="P$3"/>
 <contactref element="SW5" pad="P$4"/>
-<polygon width="0.1524" layer="15">
+<polygon width="0.254" layer="15">
 <vertex x="-2.54" y="-2.54"/>
 <vertex x="154.94" y="-2.54"/>
 <vertex x="154.94" y="167.64"/>
@@ -1065,7 +1104,7 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <wire x1="31.75" y1="34.036" x2="31.65" y2="34.25" width="0.254" layer="16"/>
 </signal>
 <signal name="VDD_3P3V">
-<polygon width="0.1524" layer="2">
+<polygon width="0.254" layer="2">
 <vertex x="-1.27" y="-1.27"/>
 <vertex x="153.67" y="-1.27"/>
 <vertex x="153.67" y="166.37"/>
@@ -1193,12 +1232,7 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <signal name="LED2">
 <contactref element="R8" pad="2"/>
 <contactref element="U3" pad="56"/>
-<wire x1="66.548" y1="5.08" x2="69.342" y2="7.874" width="0.254" layer="1"/>
-<wire x1="65.532" y1="5.08" x2="66.548" y2="5.08" width="0.254" layer="1"/>
-<wire x1="65.024" y1="4.572" x2="65.532" y2="5.08" width="0.254" layer="1"/>
-<wire x1="65.024" y1="3.556" x2="65.024" y2="4.572" width="0.254" layer="1"/>
-<wire x1="65.532" y1="3.048" x2="65.024" y2="3.556" width="0.254" layer="1"/>
-<wire x1="86.36" y1="3.048" x2="65.532" y2="3.048" width="0.254" layer="1"/>
+<wire x1="86.36" y1="3.048" x2="74.168" y2="3.048" width="0.254" layer="1"/>
 <wire x1="113.538" y1="30.226" x2="86.36" y2="3.048" width="0.254" layer="1"/>
 <wire x1="114.3" y1="30.226" x2="113.538" y2="30.226" width="0.254" layer="1"/>
 <wire x1="115.062" y1="30.988" x2="114.3" y2="30.226" width="0.254" layer="1"/>
@@ -1206,6 +1240,11 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <wire x1="116.332" y1="33.782" x2="115.062" y2="32.512" width="0.254" layer="1"/>
 <wire x1="69.342" y1="7.874" x2="69.3801" y2="7.874" width="0.254" layer="1"/>
 <wire x1="116.332" y1="33.782" x2="116.4" y2="34.01" width="0.254" layer="1"/>
+<via x="74.168" y="3.048" extent="1-16" drill="0.35"/>
+<wire x1="74.168" y1="3.048" x2="74.168" y2="5.842" width="0.254" layer="16"/>
+<via x="74.168" y="5.842" extent="1-16" drill="0.35"/>
+<wire x1="74.168" y1="5.842" x2="72.136" y2="7.874" width="0.254" layer="1"/>
+<wire x1="72.136" y1="7.874" x2="69.3801" y2="7.874" width="0.254" layer="1"/>
 </signal>
 <signal name="LED3">
 <contactref element="R9" pad="2"/>
@@ -1246,12 +1285,14 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <via x="83.566" y="42.418" extent="1-16" drill="0.35"/>
 <wire x1="83.566" y1="42.418" x2="83.566" y2="64.77" width="0.254" layer="1"/>
 <wire x1="77.47" y1="70.866" x2="77.47" y2="78.74" width="0.254" layer="1"/>
-<wire x1="77.47" y1="78.74" x2="77.47" y2="80.78" width="0.1524" layer="1"/>
-<wire x1="77.47" y1="80.78" x2="77.2302" y2="81.0198" width="0.1524" layer="1"/>
-<wire x1="77.2302" y1="81.0198" x2="77.2302" y2="81.05" width="0.1524" layer="1"/>
 <wire x1="95.292" y1="42.418" x2="83.566" y2="42.418" width="0.254" layer="16"/>
 <wire x1="83.566" y1="64.77" x2="77.47" y2="70.866" width="0.254" layer="1"/>
-<wire x1="77.2302" y1="81.0198" x2="77.2" y2="81.05" width="0" layer="19" extent="1-1"/>
+<wire x1="77.47" y1="78.74" x2="77.47" y2="80.01" width="0.1524" layer="1"/>
+<wire x1="77.47" y1="80.01" x2="77.216" y2="80.264" width="0.1524" layer="1"/>
+<wire x1="77.216" y1="80.264" x2="77.216" y2="80.6429625" width="0.1524" layer="1"/>
+<wire x1="77.216" y1="80.6429625" x2="77.2302" y2="80.6571625" width="0.1524" layer="1"/>
+<wire x1="77.2302" y1="81.05" x2="77.2302" y2="80.6571625" width="0.1524" layer="1"/>
+<wire x1="77.2" y1="81.05" x2="77.2302" y2="81.05" width="0.1524" layer="1"/>
 </signal>
 <signal name="I2C2_SCL">
 <contactref element="U2" pad="P$23"/>
@@ -1299,7 +1340,7 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <wire x1="73.914" y1="85.09" x2="74.16" y2="85.09" width="0.1524" layer="1"/>
 <wire x1="74.16" y1="85.09" x2="75.1698" y2="84.0802" width="0.1524" layer="1"/>
 <wire x1="75.1698" y1="84.0802" x2="75.1698" y2="84.05" width="0.1524" layer="1"/>
-<wire x1="75.1698" y1="84.0802" x2="75.2" y2="84.05" width="0" layer="19" extent="1-1"/>
+<wire x1="75.2" y1="84.05" x2="75.1698" y2="84.0802" width="0.1524" layer="1"/>
 </signal>
 <signal name="LED-ARRAY1_SCLK">
 <contactref element="U6" pad="2"/>
@@ -1382,6 +1423,121 @@ This DRC check is for 4-Layer Standard Capability boards. Use Layer 2 and 15 for
 <via x="94.742" y="27.178" extent="1-16" drill="0.3048"/>
 </signal>
 </signals>
+<errors>
+<approved hash="5,1,67b88b74198e0487"/>
+<approved hash="5,1,5bb8f374798e4c85"/>
+<approved hash="5,1,b9f69f699ac9bf5a"/>
+<approved hash="5,1,13ac00d772a36398"/>
+<approved hash="5,1,02185ef74e5823dc"/>
+<approved hash="5,1,0e1c66f7565febde"/>
+<approved hash="5,1,4e1e50875b9a6af5"/>
+<approved hash="5,1,ad9697fefa124988"/>
+<approved hash="5,1,7fb8bb74098e0483"/>
+<approved hash="3,1,9bf0654b30bcb58f"/>
+<approved hash="3,1,0bcf77bf77d70ba7"/>
+<approved hash="3,1,198d2e7b2e7e1988"/>
+<approved hash="3,1,b18dc67bc67fb189"/>
+<approved hash="3,1,a98dbe7bbe7fa989"/>
+<approved hash="3,1,118da67ba67f1189"/>
+<approved hash="3,1,118da67ba67f1189"/>
+<approved hash="3,1,e7d75e215de5e413"/>
+<approved hash="3,1,fb3742c1425dfbab"/>
+<approved hash="3,1,e7375ec15e45e7b3"/>
+<approved hash="3,1,e3575aa15aede31b"/>
+<approved hash="3,1,8b3466c266468bb0"/>
+<approved hash="3,1,eb5752a152ddeb2b"/>
+<approved hash="3,1,14d1a327a31314e5"/>
+<approved hash="3,1,fcd10b270b13fce5"/>
+<approved hash="3,1,14d1a327a31314e5"/>
+<approved hash="3,1,acd1bb27bb13ace5"/>
+<approved hash="3,1,b4d1c327c313b4e5"/>
+<approved hash="3,1,1cd12b272b121ce4"/>
+<approved hash="3,1,f677128be286f488"/>
+<approved hash="3,1,6c8a1bfa1b966ce6"/>
+<approved hash="3,1,0caba0dba0400c30"/>
+<approved hash="3,1,13341451a32c2dc6"/>
+<approved hash="3,1,fe2aba5aba17fe67"/>
+<approved hash="3,1,33771187119a336a"/>
+<approved hash="3,1,98b133c1338498f4"/>
+<approved hash="3,1,73c8c3b8c49574e5"/>
+<approved hash="3,1,2eb9bdc9be362d46"/>
+<approved hash="3,1,0801787178b508c5"/>
+<approved hash="3,1,5d189d1c694c52a0"/>
+<approved hash="3,1,2e17a0d0172e1060"/>
+<approved hash="3,1,b3353650c32dbdc6"/>
+<approved hash="3,1,a17a480a4805a175"/>
+<approved hash="3,1,35b7750b550b4537"/>
+<approved hash="3,1,5e7c66789210520c"/>
+<approved hash="3,1,b4a403d40380b4f0"/>
+<approved hash="3,1,ff1d3b3763036061"/>
+<approved hash="3,1,7142d532d5057175"/>
+<approved hash="3,1,0d740945b735b104"/>
+<approved hash="3,1,3cf93c893b773b07"/>
+<approved hash="3,1,87546aa26ade8728"/>
+<approved hash="3,1,ac395b223a793c93"/>
+<approved hash="3,1,0ef3c8da712c7c4c"/>
+<approved hash="3,1,60ab54db54b560c5"/>
+<approved hash="3,1,514b50ced9611ef5"/>
+<approved hash="3,1,13dc302c37941464"/>
+<approved hash="3,1,f39203e2039cf3ec"/>
+<approved hash="3,1,3148313831f23182"/>
+<approved hash="3,1,8bf4660266068bf0"/>
+<approved hash="3,1,8f5462a262ee8f18"/>
+<approved hash="3,1,8bd4662265e68810"/>
+<approved hash="5,1,98f30dd172d33dce"/>
+<approved hash="5,1,68b2017e387e144f"/>
+<approved hash="5,1,41349c4e468e60c6"/>
+<approved hash="5,1,92ef908ba526a3e6"/>
+<approved hash="5,1,bd43b1311f4afa8d"/>
+<approved hash="5,1,2f621fab9e6da052"/>
+<approved hash="5,1,5b1fa3378f42712a"/>
+<approved hash="5,1,b8f9923b6671abc1"/>
+<approved hash="5,1,40c1b8f993846a6c"/>
+<approved hash="5,1,322a2e395a7195f2"/>
+<approved hash="5,1,942a208f4e0acb52"/>
+<approved hash="5,1,95c227734836cb7a"/>
+<approved hash="5,1,99e9ed75adf3a892"/>
+<approved hash="5,1,c773e4734aafd3b2"/>
+<approved hash="5,1,99c1ef61ae27a97a"/>
+<approved hash="5,1,b88a0db8fe60b20d"/>
+<approved hash="5,1,9829e89da81ba952"/>
+<approved hash="5,1,9851eae9aa0fa94a"/>
+<approved hash="5,1,9849f505b5c3a972"/>
+<approved hash="5,1,2436058efbdd60ca"/>
+<approved hash="5,1,44448ae4511860c6"/>
+<approved hash="5,1,8ba3491eeede5af0"/>
+<approved hash="5,1,c4476ae6651a34c5"/>
+<approved hash="5,1,ffa3511ea6de12f2"/>
+<approved hash="5,1,c4436ae0691c38c1"/>
+<approved hash="5,1,c4474ae1bd1dccc5"/>
+<approved hash="5,1,c44b6aec411010c9"/>
+<approved hash="5,1,5a9388aa46e8c0af"/>
+<approved hash="5,1,69f94f664ac66f55"/>
+<approved hash="5,1,dc7d78a5607e260a"/>
+<approved hash="5,1,944a3d1753d2cb72"/>
+<approved hash="5,1,945222fb4c1ecb4a"/>
+<approved hash="5,1,ea936e8019a319b4"/>
+<approved hash="5,1,95ea25674be2ca92"/>
+<approved hash="5,1,b1da69ea025e518e"/>
+<approved hash="5,1,68b2ed4f18681991"/>
+<approved hash="5,1,9eb6eb5b2881bf72"/>
+<approved hash="5,1,c13b7c46568610c9"/>
+<approved hash="5,1,44f30dd2bad0c5cb"/>
+<approved hash="5,1,c1375c4baa8bccc5"/>
+<approved hash="5,1,c1337c4a7e8a38c1"/>
+<approved hash="5,1,acf4fdd56ad705c8"/>
+<approved hash="5,1,c1377c4c728c34c5"/>
+<approved hash="3,1,f98d0e7b0e7ff989"/>
+<approved hash="3,1,e7f75e015e05e7f3"/>
+<approved hash="3,1,7c8279f279fe7c8e"/>
+<approved hash="3,1,450ef57ef5334543"/>
+<approved hash="3,1,97347ac27a5e97a8"/>
+<approved hash="3,1,a655062505e3a593"/>
+<approved hash="3,1,6ac901b906bd6dcd"/>
+<approved hash="3,1,79a661e2f112f64e"/>
+<approved hash="3,1,65c1a927605aa14f"/>
+<approved hash="3,1,7a5a8e16952a942c"/>
+</errors>
 </board>
 </drawing>
 </eagle>
