@@ -18,6 +18,10 @@ st7565/cmd/stdemo.py
 st7565/cmd/stleds.py
 st7565/fonts/__init__.py
 st7565/fonts/font5x7.py
+st7565/images/CreateImage.py
+st7565/images/CreateImage.pyc
+st7565/images/__init__.py
+st7565/images/__init__.pyc
 st7565/images/adafruit-logo.pbm
 st7565/images/r2d2.pbm
 st7565/images/raspi-logo.pbm
