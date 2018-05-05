@@ -16,10 +16,24 @@ screen = st7565.bitmap.Bitmap()
 
 
 weather_icons = images.create_images()
+for key, value in weather_icons.items():
+    lcd.clear()
+    lcd.pos(0)
+    screen.clear()
+    if (key == "partly_cloudy" or key == "p_cloudy_night"):
+        screen.drawbitmap(value.resize((50,50)))
+    else:
+        screen.drawbitmap(value.resize((64,64)))
+    screen.hscroll(60)
+    lcd.write_buffer(screen)
+    lcd.pos(4)
+    lcd.puts(key)
+    time.sleep(1.5)
+"""    
 sunny = weather_icons["sunny"].resize((64,64))
-screen.drawbitmap(sunny)
+snowy = weather_icons["snowy"].resize((64,64))
+screen.drawbitmap(snowy)
 screen.hscroll(60)
+#screen.drawbitmap(rainy)
 lcd.write_buffer(screen)
-lcd.pos(4, 20)
-lcd.puts("79")
-
+"""
