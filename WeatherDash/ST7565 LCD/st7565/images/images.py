@@ -8,14 +8,16 @@ from PIL import Image
 import st7565.bitmap
 import st7565.lcd
 
-images_path = "/var/lib/cloud9/Git/Engi 301/WeatherDash/ST7565 LCD/st7565/images/"
+images_path = os.path.dirname(os.path.realpath(__file__)) + "/"
 
 def create_img(file_name):
-    """Returns a `PIL` image object of `file_name`. """
+    """Returns a `PIL` image object of `file_name`, resized to fit the display """
     try:
-        return Image.open(images_path + file_name)
+        img = Image.open(images_path + file_name)
+        return fit_to_display(img)
+        
     except IOError:
-        print("Specified image file: %s cannot be found" % file_name)
+        print("Specified image file: %s cannot be found at: %s" % (file_name,images_path))
 
 def create_images():
     """
@@ -27,20 +29,52 @@ def create_images():
         break
     for file in filenames:
         if ((".pbm" in file) or (".jpg" in file)):
-            images[file[:-4]] = create_img(images_path + file)
+            images[file[:-4]] = create_img(file)
     return images
+
+def fit_to_display(img, fit_by_height = None):
+    """
+    Returns a proportionally resized image with the largest dimensions that can fit on the display.
+    
+    `fit_by_height`: whether to force resizing using height
+    """
+    width, height = img.size
+    ratio = float(width) / height
+    if fit_by_height == None:
+        if (height*2) >= width:
+            fit_by_height = True
+        else:
+            fit_by_height = False
+    if (fit_by_height):
+        if not(height == 64):
+            dif = 64 - height
+            height = int(round(height + dif))
+            width = int(round((dif*ratio) + width))
+            #Takes care of the case when shrinking the image would eliminate its width dimension
+            if width == 0:
+                width = 1
+            return img.resize((width, height))
+    else:
+        if not (width == 128):
+            dif = 128 - width
+            width = int(round(width + dif))
+            height = int(round((dif/ratio) + height))
+            #Takes care of the case when shrinking the image would eliminate its height dimension
+            if height == 0:
+                height = 1
+            return img.resize((width, height))    
 
 def resize_image(img, size):
     """
-    Returns a proportionally resized image to `size` percent of the original image.
+    Returns a proportionally resized image to `size` percent of the original image, relative to image max size on display.
     
     `img`: A `PIL` image object.
     """
-    size /= 100
+    size /= 100.0
     width, height = img.size
-    width = round(width*size)
-    height = round(height*size)
-    img.resize((width,height))
+    width = int(round(width*size))
+    height = int(round(height*size))
+    img = img.resize((width,height))
     return img
             
 def display_img(img, screen, lcd, size = 100, x=0, y=0):
@@ -52,8 +86,13 @@ def display_img(img, screen, lcd, size = 100, x=0, y=0):
     `lcd`: An lcd object.
     """
     if not(size == 100):
-        img = resize_image(img)
-    screen.drawbitmap(img, x, y)
-    lcd.write_buffer(screen) 
+        img = resize_image(img, size)
+    try:    
+        screen.drawbitmap(img, x, y)
+        lcd.write_buffer(screen) 
+    except IndexError:
+        size = img.size
+        print("Image with size (%d,%d) cannot be fit onto (128, 64) size display using given coordinates: (%d,%d)" % (size[0], size[1], x, y))
+    
 
 
