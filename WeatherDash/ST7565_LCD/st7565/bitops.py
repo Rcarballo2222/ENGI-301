@@ -20,7 +20,7 @@ def rotater(row, steps=1):
 def rotatel(row, steps=1):
     '''Rotate an array of integers one bit to the left.'''
     lost = 0
-    mask = (0xff >> steps & 0xff) ^ 0xff
+    mask = (0xff >> steps & 0x00) ^ 0xff
     for i, b in enumerate(row[:]):
         x = (b << steps) & 0xff
         if lost:
@@ -32,3 +32,8 @@ def rotatel(row, steps=1):
         row[0] |= (lost >> (8-steps))
 
     return row
+
+    for i in range(d):
+        leftRotatebyOne(arr, n)
+
+(n << d)|(n >> (INT_BITS - d))        

@@ -2,6 +2,7 @@
 Allows for creation, manipulation, and displaying of images contained in this directory for use in bitmaps.
 """
 import os
+import copy
 import random
 from os import walk
 from PIL import Image
@@ -9,8 +10,6 @@ from PIL import Image
 import st7565.bitmap
 import st7565.lcd
 
-global shift
-shift = (0,0)
 images_path = os.path.dirname(os.path.realpath(__file__)) + "/"
 
 def create_img(file_name):
@@ -98,21 +97,11 @@ def display_img(img, screen, lcd, size = 100, x=0, y=0):
         print("Image with size (%d,%d) cannot be fit onto (128, 64) size display using given coordinates: (%d,%d)" % (size[0], size[1], x, y))
     
 def shift_imgs(screen, lcd):
-    global shift
     lcd.clear()
-    if shift == (0,0): 
-        h = random.randint(-2, 2)
-        v = random.randint(-2, 2)
-        shift = (h, v)
-        screen.hscroll(shift[0])
-        lcd.write_buffer(screen)
-        screen.vscroll(shift[1])
-        lcd.write_buffer(screen)
-    else:
-        screen.hscroll(-shift[0])
-        lcd.write_buffer(screen)
-        screen.vscroll(-shift[1])
-        lcd.write_buffer(screen)
-        shift = (0,0)
-    #lcd.write_buffer(screen)
-    
+    h = random.randint(-2, 2)
+    v = random.randint(0, 2)
+    shift = (h, v)
+    screen.hscroll(shift[0])
+    screen.vscroll(shift[1])
+    lcd.write_buffer(screen)
+    screen.clear()
