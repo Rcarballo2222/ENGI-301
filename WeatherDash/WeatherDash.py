@@ -28,11 +28,14 @@ import Forecast_IO_py.forecastiopy.timeout as timeout
 global TIMEZONE
 global APIKEY
 global TIMEOUT
-global FONT
 global TIMEZONES
-global temp
-global PROTOCOL
-
+global TEMP_FILE
+global lcd
+global screen
+global font
+global icons
+global cur_location
+global fio
 
 """
 User-Settings
@@ -43,16 +46,19 @@ TIMEOUT = 30 #Timeout for pulling data from Darksky
 FONT = "segoe_ui" #Font to use for displaying numbers
 
 """"""
-if not(os.path.isfile("temp.txt")): 
-    temp = open("temp.txt","w+")
-
 font = fonts.create_font(FONT)
 lcd = lcd.LCD(adafruit=True)  
 screen = bitmap.Bitmap()
-PROTOCOL = pickle.HIGHEST_PROTOCOL
+icons = images.create_images()
+cur_location = weather.get_location()
+fio = ForecastIO.ForecastIO(APIKEY,units=ForecastIO.ForecastIO.UNITS_US,lang=ForecastIO.ForecastIO.LANG_ENGLISH)
+
 TIMEZONES = {}
 TIMEZONES["ET"] = 4 #UTC -4
 TIMEZONES["CT"] = 5 #UTC -5
+TEMP_FILE = "temp.tmp"
+if not(os.path.isfile(TEMP_FILE)): 
+    tmp = open(TEMP_FILE, "w+")
 
 """
 Functions
@@ -62,13 +68,72 @@ def reboot():
     os.system("sudo reboot")
 
 def sleep():
-    pass
-
+    global lcd
+    
+    lcd.sleep()
+    
 def wake():
-    pass
+    global lcd
+    
+    lcd.wake()
 
 def maintenance():
-    pass
+    global screen
+    global lcd 
+    
+    temp = open(TEMP_FILE, "r")
+    screen = pickle.load(temp)
+    images.shift_imgs(screen, lcd)
+    
+def first_start():
+    
+    global TIMEOUT
+    global icons
+    global screen
+    global lcd
+    global cur_location
+    
+    wake()
+    not_connected = True
+    
+    try:
+        with timeout.timeout(seconds=300):
+            images.display_img(icons["weatherdash_logo"], screen, lcd, 60, 20, 10)
+            lcd.pos(6, 40)
+            lcd.puts("Loading...")
+            while not_connected:
+                try:
+                    with timeout.timeout(seconds=2):
+                        lcd.clear()
+                        lcd.puts("In loop")
+                        fio.get_forecast(cur_location[0], cur_location[1])
+                        lcd.pos(2)
+                        lcd.puts("Connected")
+                        not_connected = False
+                except timeout.TimeoutError:
+                    continue
+    except timeout.TimeoutError:
+        lcd.clear()
+        lcd.puts("Request timed out")
+        lcd.page_set(2)
+        lcd.puts("Retrying with longer timeout")
+        lcd.page_set(3)
+        lcd.puts("Retrying in 10 seconds...")
+        i = 10
+        while(i > 0):
+            time.sleep(1)
+            i -= 1
+        try:
+            with timeout.timeout(seconds=2*TIMEOUT):
+                fio.get_forecast(cur_location[0], cur_location[1])
+        except timeout.TimeoutError:
+            lcd.page_set(4)
+            lcd.puts("Failed. Rebooting device in 5 seconds")
+            time.sleep(5)
+            reboot()
+    screen.clear()
+    lcd.clear()
+    update()
 
 def update():
     """
@@ -77,80 +142,74 @@ def update():
     global APIKEY
     global TIMEOUT
     global FONT
-    global PROTOCOL
-    global temp
-    
+    global TEMP_FILE
+    global screen
+    global lcd
+    global icons
+    global cur_location
+    global fio
     
     lcd.clear()
-    weather_icons = images.create_images()
-    cur_location = weather.get_location()
-    fio = ForecastIO.ForecastIO(APIKEY,units=ForecastIO.ForecastIO.UNITS_US,lang=ForecastIO.ForecastIO.LANG_ENGLISH)
-    pickle.dump(fio, temp, -1)
-    
-    test = pickle.load(temp)
-    test.get_forecast(cur_location[0], cur_location[1])
-    fiocur = FIOCurrently.FIOCurrently(fio)
-    current = fiocur.get()
-    print current
     
     """
     Main Code
-    
+    """
     try:
         with timeout.timeout(seconds=TIMEOUT):
             fio.get_forecast(cur_location[0], cur_location[1])
     except timeout.TimeoutError:
-        print("Request timed out")
-        print("Retrying with longer timeout")
+        lcd.clear()
+        lcd.puts("Request timed out")
+        lcd.page_set(2)
+        lcd.puts("Retrying with longer timeout")
+        lcd.page_set(3)
+        lcd.puts("Retrying in 10 seconds...")
         i = 10
         while(i > 0):
-            print("Retrying in %d seconds..." % i)
             time.sleep(1)
             i -= 1
         try:
             with timeout.timeout(seconds=2*TIMEOUT):
                 fio.get_forecast(cur_location[0], cur_location[1])
         except timeout.TimeoutError:
-            print("Failed. Rebooting device in 5 seconds")
+            lcd.page_set(4)
+            lcd.puts("Failed. Rebooting device in 5 seconds")
             time.sleep(5)
             reboot()
     
-    for i in range(1,5):
-        time.sleep(2)
-        fiocur = FIOCurrently.FIOCurrently(fio)
-        current = fiocur.get()
-        temp = weather.get_temperature(current)
-        icon = weather_icons[weather.get_icon(current)]
-        #weather = weather_icons["partly_cloudy_day"]
-        #temp = 83
-        lcd.clear()
-        if i % 2 == 0:
-            images.shift_imgs(screen, lcd)
-            print("shift")
-        else:
-            lcd.clear()
-            images.display_img(icon, screen, lcd, 100, 58)
-            fonts.display_s(str(temp) + "d",font, screen, lcd, 5, 2, 15)
-            print("New")
-    """        
+    fiocur = FIOCurrently.FIOCurrently(fio)
+    current = fiocur.get()
+    temp = weather.get_temperature(current)
+    icon = icons[weather.get_icon(current)]
+    lcd.clear()
+
+    screen = images.display_img(icon, screen, lcd, 100, 58)
+    screen = fonts.display_s(str(temp) + "d",font, screen, lcd, 5, 2, 15)
+    temp = open(TEMP_FILE, "w")
+    pickle.dump(screen, temp, -1)
+          
 def main():
     
-    time = str(datetime.now().time())
-    time = int(time[0:2])
-    time -= TIMEZONES[TIMEZONE]
-    update()
-    """
-    if time < 0:
-        time = 24 + time
-    if time == 7:
+    lcd.clear()
+    cur_time = str(datetime.now().time())
+    cur_time = int(cur_time[0:2])
+    cur_time -= TIMEZONES[TIMEZONE]
+    
+    print("testing")
+    
+    if cur_time < 0:
+        cur_time += 24
+    if cur_time == 7:
         wake()
         update()
-    elif time == 23:
+    elif cur_time == 23:
         sleep()
-    elif not(time % 2 == 0):
+    elif cur_time > 7 and cur_time < 23 and not(cur_time % 2 == 0):
         update()
-    else:
+    elif cur_time > 7 and cur_time < 23 and (cur_time % 2 == 0):
         maintenance()
-    """    
+    else:
+        sleep()
+  
 if __name__ == '__main__':
     main()

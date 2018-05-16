@@ -60,6 +60,8 @@ def display_c(c, font, screen, lcd, size=5, x=0, y=0):
 def display_s(s, font, screen, lcd, size=5, x=0, y=0):
     """
     Displays a string of characters in the given `font` with top-left corner at the specified `x` and `y` coordinates
+    
+    Returns an updated screen object if wanted
     """
     i = 0
     spacing = size * .11
@@ -68,7 +70,8 @@ def display_s(s, font, screen, lcd, size=5, x=0, y=0):
     char_w, char_h = font[char].size
     for c in s:
         display_c(c,font,screen,lcd,size,(int(i*spacing*char_w)+x),y)
-        i += 1        
+        i += 1
+    return screen    
         
         
         

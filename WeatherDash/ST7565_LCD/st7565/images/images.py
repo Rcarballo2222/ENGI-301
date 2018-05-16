@@ -83,6 +83,8 @@ def display_img(img, screen, lcd, size = 100, x=0, y=0):
     """
     Displays PIL image objects on the ST7565 display at a specified x and y coordinates.
     
+    Returns an updated screen object if wanted.
+    
     `img`: A `PIL` image object.
     `screen`: A bitmap object. What will be written to the display.
     `lcd`: An lcd object.
@@ -91,7 +93,8 @@ def display_img(img, screen, lcd, size = 100, x=0, y=0):
         img = resize_image(img, size)
     try:    
         screen.drawbitmap(img, x, y)
-        lcd.write_buffer(screen) 
+        lcd.write_buffer(screen)
+        return screen
     except IndexError:
         size = img.size
         print("Image with size (%d,%d) cannot be fit onto (128, 64) size display using given coordinates: (%d,%d)" % (size[0], size[1], x, y))
