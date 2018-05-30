@@ -16,6 +16,7 @@ BRIGHTNESS = 0x20
 
 LCD_RST = "P2_20" #GPIO 64 being used as digital reset
 LCD_A0 = "P2_19" #GPIO 27
+LCD_BACKLIGHT = "P2_4" #GPIO 58
 SPI_BUS = 2
 SPI_DEV = 1
 
@@ -57,11 +58,13 @@ class LCD (object):
                  spi_bus=SPI_BUS,
                  spi_dev=SPI_DEV,
                  brightness=BRIGHTNESS,
+                 backlight=LCD_BACKLIGHT,
                  init=True,
                  adafruit=False):
 
         self.pin_rst = pin_rst
         self.pin_a0 = pin_a0
+        self.backlight = backlight        
         self.spi_bus = spi_bus
         self.spi_dev = spi_dev
         self.brightness = brightness
@@ -80,8 +83,8 @@ class LCD (object):
     
     def init_gpio(self):
         '''Initialize GPIO configuration. 
-        Configure RST and A0 outputs.'''
-        for pin in [LCD_RST, LCD_A0]:
+        Configure RST, Backlight and A0 outputs.'''
+        for pin in [LCD_RST, LCD_A0, LCD_BACKLIGHT]:
             GPIO.setup(pin, GPIO.OUT, initial = 1)
     
     def init_spi(self):
@@ -195,9 +198,11 @@ class LCD (object):
 
     def display_on(self):
         self.send_command([st7565.ops.DISPLAY_ON])
+        self._reset_pin(self.backlight)
 
     def display_off(self):
         self.send_command([st7565.ops.DISPLAY_OFF])
+        self._set_pin(self.backlight)
 
     def display_points_on(self):
         '''Turn all pixels on.'''
@@ -272,6 +277,7 @@ class LCD (object):
         self.set_static_indicator(False, mode=STATIC_OFF)
         self.display_off()
         self.display_points_on()
+        
 
     def wake(self):
         '''Wake the LCD.'''

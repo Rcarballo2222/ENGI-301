@@ -4,9 +4,11 @@ import random
 import os
 import os.path
 import pickle
+import urllib3
 from PIL import Image
 import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.SPI as SPI
+
 
 import ST7565_LCD.st7565.images.images as images
 import ST7565_LCD.st7565.fonts.fonts as fonts
@@ -44,13 +46,13 @@ TIMEZONE = "ET" #Current timezone
 APIKEY = "ecec575b921533aa1148c52df084d94b" #Darksky API Key
 TIMEOUT = 30 #Timeout for pulling data from Darksky
 FONT = "segoe_ui" #Font to use for displaying numbers
+cur_location = [25.6781743,-80.326881] #Current location [Lattitude, Longitude]
 
 """"""
 font = fonts.create_font(FONT)
 lcd = lcd.LCD(adafruit=True)  
 screen = bitmap.Bitmap()
 icons = images.create_images()
-cur_location = weather.get_location()
 fio = ForecastIO.ForecastIO(APIKEY,units=ForecastIO.ForecastIO.UNITS_US,lang=ForecastIO.ForecastIO.LANG_ENGLISH)
 
 TIMEZONES = {}
@@ -84,6 +86,55 @@ def maintenance():
     temp = open(TEMP_FILE, "r")
     screen = pickle.load(temp)
     images.shift_imgs(screen, lcd)
+
+def retry_attempt():
+    global TIMEOUT
+    global lcd
+    global cur_location
+    global fio
+    
+    time_start = time.time()
+    retry_timeout = TIMEOUT * 2
+    not_connected = True
+    
+    lcd.clear()
+    lcd.puts("Error") 
+    lcd.pos(1)
+    lcd.puts("Unable to update data")
+    lcd.pos(2)
+    lcd.puts("Check your Internet Connection")
+    time.sleep(1)
+    i = 10
+    while(i > 0):
+        text = "Retrying in " + "  " + " seconds..."
+        lcd.pos(3)
+        lcd.puts(text)
+        text = "Retrying in " + str(i) + " seconds..."
+        lcd.pos(3)
+        lcd.puts(text)
+        time.sleep(1)
+        i -= 1
+    try:
+        
+        while not_connected:
+            try:
+                with timeout.timeout(seconds=retry_timeout):
+                    fio.get_forecast(cur_location[0], cur_location[1])
+                    not_connected = False
+            except:
+                time_elapsed = time.time() - time_start
+                if time_elapsed > retry_timeout:
+                    raise timeout.TimeoutError("Max Timeout")
+                else:
+                    time.sleep(2)
+                    continue
+    except timeout.TimeoutError:
+        lcd.pos(4)
+        lcd.puts("Failed.")
+        lcd.pos(5)
+        lcd.puts("Rebooting device in 5s")
+        time.sleep(5)
+        reboot()
     
 def first_start():
     
@@ -92,45 +143,30 @@ def first_start():
     global screen
     global lcd
     global cur_location
+    global fio
     
     wake()
     not_connected = True
     
     try:
-        with timeout.timeout(seconds=300):
-            images.display_img(icons["weatherdash_logo"], screen, lcd, 60, 20, 10)
-            lcd.pos(6, 40)
-            lcd.puts("Loading...")
-            while not_connected:
-                try:
-                    with timeout.timeout(seconds=2):
-                        lcd.clear()
-                        lcd.puts("In loop")
-                        fio.get_forecast(cur_location[0], cur_location[1])
-                        lcd.pos(2)
-                        lcd.puts("Connected")
-                        not_connected = False
-                except timeout.TimeoutError:
+        time_start = time.time()
+        images.display_img(icons["weatherdash_logo"], screen, lcd, 60, 20, 10)
+        lcd.pos(6, 40)
+        lcd.puts("Loading...")
+        while not_connected:
+            try:
+                with timeout.timeout(seconds=2):
+                    fio.get_forecast(cur_location[0], cur_location[1])
+                    not_connected = False
+            except:
+                time_elapsed = time.time() - time_start
+                if time_elapsed > 300:
+                    raise timeout.TimeoutError("Max Timeout")
+                else:
+                    time.sleep(2)
                     continue
     except timeout.TimeoutError:
-        lcd.clear()
-        lcd.puts("Request timed out")
-        lcd.page_set(2)
-        lcd.puts("Retrying with longer timeout")
-        lcd.page_set(3)
-        lcd.puts("Retrying in 10 seconds...")
-        i = 10
-        while(i > 0):
-            time.sleep(1)
-            i -= 1
-        try:
-            with timeout.timeout(seconds=2*TIMEOUT):
-                fio.get_forecast(cur_location[0], cur_location[1])
-        except timeout.TimeoutError:
-            lcd.page_set(4)
-            lcd.puts("Failed. Rebooting device in 5 seconds")
-            time.sleep(5)
-            reboot()
+        retry_attempt()
     screen.clear()
     lcd.clear()
     update()
@@ -141,7 +177,7 @@ def update():
     """
     global APIKEY
     global TIMEOUT
-    global FONT
+    global font
     global TEMP_FILE
     global screen
     global lcd
@@ -157,51 +193,35 @@ def update():
     try:
         with timeout.timeout(seconds=TIMEOUT):
             fio.get_forecast(cur_location[0], cur_location[1])
-    except timeout.TimeoutError:
-        lcd.clear()
-        lcd.puts("Request timed out")
-        lcd.page_set(2)
-        lcd.puts("Retrying with longer timeout")
-        lcd.page_set(3)
-        lcd.puts("Retrying in 10 seconds...")
-        i = 10
-        while(i > 0):
-            time.sleep(1)
-            i -= 1
-        try:
-            with timeout.timeout(seconds=2*TIMEOUT):
-                fio.get_forecast(cur_location[0], cur_location[1])
-        except timeout.TimeoutError:
-            lcd.page_set(4)
-            lcd.puts("Failed. Rebooting device in 5 seconds")
-            time.sleep(5)
-            reboot()
-    
+    except:
+        retry_attempt()
+        
     fiocur = FIOCurrently.FIOCurrently(fio)
     current = fiocur.get()
     temp = weather.get_temperature(current)
     icon = icons[weather.get_icon(current)]
+    chance_of_rain = weather.get_rain_chance(fio)
     lcd.clear()
 
-    screen = images.display_img(icon, screen, lcd, 100, 58)
-    screen = fonts.display_s(str(temp) + "d",font, screen, lcd, 5, 2, 15)
+    screen = images.display_img(icon, screen, lcd, 70, 77)
+    screen = fonts.display_s(str(temp) + "d",font, screen, lcd, 5, 5, 7)
+    screen = images.display_img(icons["umbrella"], screen, lcd, 20, 40, 48)
+    test_font = fonts.create_font("pixel", False)
+    if chance_of_rain > 0:
+        screen = fonts.display_s(str(chance_of_rain) + "p",font, screen, lcd, 2, 57, 48)
     temp = open(TEMP_FILE, "w")
     pickle.dump(screen, temp, -1)
           
 def main():
-    
     lcd.clear()
     cur_time = str(datetime.now().time())
     cur_time = int(cur_time[0:2])
     cur_time -= TIMEZONES[TIMEZONE]
-    
-    print("testing")
-    
+
     if cur_time < 0:
         cur_time += 24
     if cur_time == 7:
-        wake()
-        update()
+        reboot()
     elif cur_time == 23:
         sleep()
     elif cur_time > 7 and cur_time < 23 and not(cur_time % 2 == 0):
@@ -210,6 +230,6 @@ def main():
         maintenance()
     else:
         sleep()
-  
+    
 if __name__ == '__main__':
     main()

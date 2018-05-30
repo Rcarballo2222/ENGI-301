@@ -9,17 +9,20 @@ import os
 
 fonts_path = os.path.dirname(os.path.realpath(__file__)) + "/"
 
-def create_font(font_name):
+def create_font(font_name, fit = True):
     """
     Returns a dictionary containing a `PIL` image object for every number in the specified font image `font_name`.jpg, callable in dictionary format.
     """
     font = {}
     try:
         numbers = Image.open(fonts_path + font_name + ".jpg")
-        numbers = images.fit_to_display(numbers, True)
+        if fit:
+            numbers = images.fit_to_display(numbers, True)
         width, height = numbers.size
         font["d"] = Image.open(fonts_path + "degree.jpg")
         font["d"] = images.fit_to_display(font["d"])
+        font["p"] = Image.open(fonts_path + "percent.jpg")
+        font["p"] = images.fit_to_display(font["p"])
         d_w, d_h = font["d"].size
         font["d"] = font["d"].crop((10,0,d_w-10,d_w))
         box_width = float(width)/10   
@@ -29,8 +32,6 @@ def create_font(font_name):
             #Checks if a subrectangle passes the width of the image, and shortens it if necessary
             if box[3] > width:
                 box[3] = width
-                
-            #pix_dif = ((i + 1)*pix_dif) % 1
             
             box = tuple(box)
             font[str(i)] = numbers.crop(box) 
@@ -54,7 +55,7 @@ def display_c(c, font, screen, lcd, size=5, x=0, y=0):
         height = int(round(size*height))
         char.resize((width,height))
     """
-    size = int(size * 10)
+    size = int(round(size * 10))
     images.display_img(char,screen,lcd,size,x,y)
         
 def display_s(s, font, screen, lcd, size=5, x=0, y=0):
