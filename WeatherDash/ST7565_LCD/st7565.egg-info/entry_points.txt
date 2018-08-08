@@ -1,4 +1,0 @@
-[console_scripts]
-stdemo = st7565.cmd.stdemo:main
-stleds = st7565.cmd.stleds:main
-
