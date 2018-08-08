@@ -38,6 +38,9 @@ global font
 global icons
 global cur_location
 global fio
+global UPDATE_HOUR
+global OVERVIEW_TIME
+global cur_time
 
 """
 User-Settings
@@ -46,6 +49,8 @@ TIMEZONE = "ET" #Current timezone
 APIKEY = "ecec575b921533aa1148c52df084d94b" #Darksky API Key
 TIMEOUT = 30 #Timeout for pulling data from Darksky
 FONT = "segoe_ui" #Font to use for displaying numbers
+UPDATE_HOUR = 1 #How often to update the weather. Must be >= 1
+OVERVIEW_TIME = 19 #Up to what time will the precipitation overview show. After this time, will default to precipitation for rest of the day (23:59) Write as an afternoon 24-hour time.
 cur_location = [25.6781743,-80.326881] #Current location [Lattitude, Longitude]
 
 """"""
@@ -67,11 +72,13 @@ Functions
 """
 
 def reboot():
+    os.system("sudo ifconfig wlan0 up")
+    time.sleep(5)
     os.system("sudo reboot")
 
 def sleep():
     global lcd
-    
+    os.system("sudo ifconfig wlan0 down")
     lcd.sleep()
     
 def wake():
@@ -144,18 +151,33 @@ def first_start():
     global lcd
     global cur_location
     global fio
+    global TIMEZONES
+    global TIMEZONE
+    global cur_time
     
     wake()
+    load_count = 0
+    
+    images.display_img(icons["weatherdash_logo"], screen, lcd, 60, 20, 10)
     not_connected = True
     
     try:
         time_start = time.time()
-        images.display_img(icons["weatherdash_logo"], screen, lcd, 60, 20, 10)
-        lcd.pos(6, 40)
-        lcd.puts("Loading...")
         while not_connected:
             try:
                 with timeout.timeout(seconds=2):
+                    lcd.pos(6, 40)
+                    if load_count == 0 or load_count >= 4:
+                        lcd.puts("Loading   ")
+                        load_count = 0
+                    elif load_count == 1:
+                        lcd.puts("Loading.  ")
+                    elif load_count == 2:
+                        lcd.puts("Loading.. ")
+                    elif load_count == 3:
+                        lcd.puts("Loading... ")
+                    load_count += 1
+                    
                     fio.get_forecast(cur_location[0], cur_location[1])
                     not_connected = False
             except:
@@ -169,7 +191,16 @@ def first_start():
         retry_attempt()
     screen.clear()
     lcd.clear()
-    update()
+    cur_time = str(datetime.now().time())
+    cur_time = int(cur_time[0:2])
+    cur_time -= TIMEZONES[TIMEZONE]
+
+    if cur_time < 0:
+        cur_time += 24
+    if cur_time < 7 or cur_time >= 23:
+        sleep()
+    else:
+        update()
 
 def update():
     """
@@ -184,6 +215,7 @@ def update():
     global icons
     global cur_location
     global fio
+    global cur_time
     
     lcd.clear()
     
@@ -200,19 +232,46 @@ def update():
     current = fiocur.get()
     temp = weather.get_temperature(current)
     icon = icons[weather.get_icon(current)]
-    chance_of_rain = weather.get_rain_chance(fio)
+    rain_time = ""
+    
+    if cur_time >= OVERVIEW_TIME:
+        overview = 23
+    else:
+        overview = OVERVIEW_TIME
+    
+    hour_range = overview - cur_time
+    
+    if hour_range <= 0:
+        hour_range = 1
+    chance_of_rain, rain_hour = weather.get_rain_chance(fio, hour_range)
+    rain_hour += cur_time
+    if rain_hour > 23:
+        rain_hour = 23
+    if rain_hour <= 0:
+        rain_time = "n"
+    elif rain_hour > 12:
+        rain_hour -= 12
+        rain_time = str(rain_hour) + "a"
+    elif rain_hour == 12:
+        rain_time = "12a"
+    else:
+        rain_time = str(rain_hour) + "m"
     lcd.clear()
 
     screen = images.display_img(icon, screen, lcd, 70, 77)
     screen = fonts.display_s(str(temp) + "d",font, screen, lcd, 5, 5, 7)
     screen = images.display_img(icons["umbrella"], screen, lcd, 20, 40, 48)
     test_font = fonts.create_font("pixel", False)
-    if chance_of_rain > 0:
+    if chance_of_rain >= 0.0:
         screen = fonts.display_s(str(chance_of_rain) + "p",font, screen, lcd, 2, 57, 48)
+        #screen = images.display_img(icons["at"], screen, lcd, 15, 69, 51)
+        #screen = fonts.display_s(rain_time,font, screen, lcd, 1.5, 84, 51)
     temp = open(TEMP_FILE, "w")
     pickle.dump(screen, temp, -1)
           
 def main():
+    global cur_time
+    
     lcd.clear()
     cur_time = str(datetime.now().time())
     cur_time = int(cur_time[0:2])
@@ -220,16 +279,17 @@ def main():
 
     if cur_time < 0:
         cur_time += 24
+        
     if cur_time == 7:
         reboot()
-    elif cur_time == 23:
+    elif cur_time < 7 or cur_time >= 23:
         sleep()
-    elif cur_time > 7 and cur_time < 23 and not(cur_time % 2 == 0):
+    elif cur_time % UPDATE_HOUR == 0:
         update()
-    elif cur_time > 7 and cur_time < 23 and (cur_time % 2 == 0):
-        maintenance()
-    else:
-        sleep()
+        
+    if cur_time % 2 == 0:
+        pass
+        #maintenance()    
     
 if __name__ == '__main__':
     main()

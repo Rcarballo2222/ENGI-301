@@ -39,16 +39,21 @@ def get_temperature(fio):
     
 def get_rain_chance(fio, hours = 5):
     """
-    Returns an average percent chance of rain for the next `hours` hours
+    Returns the highest percent chance of rain and the hour that it's the highest for the next `hours` hours
     """
-    total_chance = -1
+    highest_chance = -1
     if fio.has_hourly() and (hours > 0) and (hours < 49):
-        total_chance = 0
+        highest_chance = 0
+        highest_chance_hour = 0
         fiohr = FIOHourly.FIOHourly(fio)
+        fiocur = FIOCurrently.FIOCurrently(fio)
+        highest_chance = float(fiocur.get()["precipProbability"])
         for hour in range(1,hours + 1):
-            total_chance += float(fiohr.get_hour(hour)["precipProbability"])
-        total_chance /= float(hours)
-        total_chance = int(round(total_chance * 100))
-    return total_chance    
+            hour_chance = float(fiohr.get_hour(hour)["precipProbability"])
+            if hour_chance > highest_chance:
+                highest_chance = hour_chance
+                highest_chance_hour = hour
+        highest_chance = int(round(highest_chance * 100))
+    return highest_chance, highest_chance_hour    
             
 

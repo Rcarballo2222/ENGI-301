@@ -1,0 +1,8 @@
+WeatherDash/Forecast_IO_py/dist/
+WeatherDash/Forecast_IO_py/build/
+WeatherDash/Forecast_IO_py/forecastiopy.egg-info/
+WeatherDash/ST7565_LCD/build/
+WeatherDash/ST7565_LCD/dist/
+WeatherDash/ST7565_LCD/st7565.egg-info/
+*.tmp
+*.pyc
